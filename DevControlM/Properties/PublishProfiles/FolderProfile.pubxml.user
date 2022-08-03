@@ -1,0 +1,27 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121. 
+-->
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <TimeStampOfAssociatedLegacyPublishXmlFile />
+    <_PublishTargetUrl>C:\Users\ddesarrollo\Downloads\aero\APP</_PublishTargetUrl>
+    <History>True|2022-03-01T15:53:37.9481936Z;True|2022-03-01T10:53:28.8596661-05:00;True|2022-03-01T10:47:59.2792046-05:00;True|2022-03-01T10:19:32.5026535-05:00;True|2022-03-01T09:53:50.3241773-05:00;True|2022-03-01T09:53:13.0343767-05:00;True|2022-02-28T09:47:17.8123655-05:00;</History>
+  </PropertyGroup>
+  <ItemGroup>
+    <File Include="Apis/CentrosController.cs">
+      <publishTime>11/15/2021 20:07:33</publishTime>
+    </File>
+    <File Include="Apis/MunicipiosController.cs">
+      <publishTime>11/22/2021 13:07:13</publishTime>
+    </File>
+  </ItemGroup>
+  <ItemGroup>
+    <DestinationConnectionStrings Include="DataSof">
+      <Value>Data source=172.24.80.25%3b initial catalog=digepi_viepi%3b user id=csolano%3b password=123456</Value>
+    </DestinationConnectionStrings>
+    <DestinationConnectionStrings Include="DevControlContext">
+      <Value>Data Source=%28local%29%3bInitial Catalog=DevControl%3bPersist Security Info=True%3bUser ID=cw%3b Password=Cesc3009</Value>
+    </DestinationConnectionStrings>
+  </ItemGroup>
+</Project>

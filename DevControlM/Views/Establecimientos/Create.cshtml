@@ -1,0 +1,138 @@
+﻿@model DevControlM.Models.Establecimientos
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Establecimientos</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                <input asp-for="Nombre" class="form-control" />
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Provincia" class="control-label"></label>
+                @Html.DropDownListFor(x => x.Provincia, (IEnumerable
+               <SelectListItem>)ViewData["DBProvincias"], "-- Select --",  htmlAttributes: new { @class = "form-control",id="prov", onchange = "myFunc()" })
+                <span asp-validation-for="Provincia" class="text-danger"></span>
+            </div> 
+              
+            <div class="form-group">
+                <label asp-for="Municipio" class="control-label"></label>
+                <select asp-for="Municipio" class="form-control"  id="locality-dropdown">  </select>
+        
+                 <span asp-validation-for="Municipio" class="text-danger"></span> 
+            </div>
+            <div class="form-group">
+                <label asp-for="Nivel" class="control-label"></label>
+                <input asp-for="Nivel" class="form-control" />
+                <span asp-validation-for="Nivel" class="text-danger"></span>
+            </div>
+            @* DBinstitucion *@
+            <div class="form-group">
+                <label asp-for="Institucion" class="control-label"></label>
+                @Html.DropDownListFor(x => x.Institucion,  (IEnumerable
+               <SelectListItem>)ViewData["DBinstitucion"],  htmlAttributes: new { @class = "form-control" })                <span asp-validation-for="Institucion" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="Fecha_Mod" class="control-label"></label>
+                <input asp-for="Fecha_Mod" class="form-control" />
+                <span asp-validation-for="Fecha_Mod" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script type="text/javascript">
+@* 
+let dropdown = $('#locality-dropdown');
+
+dropdown.empty();
+
+dropdown.append('<option selected="true" disabled>Choose State/Province</option>');
+dropdown.prop('selectedIndex', 0);
+
+        const url = '/api/centros';
+
+Populate dropdown with list of provinces
+Populate dropdown with list of provinces
+$.getJSON(url, function (data) {
+  $.each(data, function (key, entry) {
+      dropdown.append($('<option></option>').attr('value', entry.abbreviation).text(entry.name));
+      //console.log(data);
+      console.log(entry.name);
+  })
+}); *@
+
+
+ /*   function Municipio()  {*/
+    //
+
+    function myFunc() {
+        alert('hi')
+        let dropdown = document.getElementById ('locality-dropdown');
+        dropdown.length = 0;
+
+        let defaultoption = document.createElement('option');
+        defaultoption.text = 'seleccione un municipio';
+
+        dropdown.add(defaultoption);
+        dropdown.selectedindex = 0;
+        var data = document.getElementById("prov").value;
+        const url = '/api/municipios/' + data;
+
+        fetch(url)
+            .then(
+                function (response) {
+                    if (response.status !== 200) {
+                        console.warn('looks like there was a problem. status code: ' +
+                            response.status);
+                        return;
+                    }
+
+                    // examine the text in the response  
+                    response.json().then(function (data) {
+                        let option;
+
+                        for (let i = 0; i < data.length; i++) {
+                            option = document.createElement('option');
+                            option.text = data[i].nombre;
+                            option.value = data[i].id;
+                            dropdown.add(option);
+                        }
+                    });
+                }
+            )
+            .catch(function (err) {
+                console.error('fetch error -', err);
+            });
+
+    }
+
+        
+        alert("Hello! I am an alert box!!");
+
+    //}
+
+    </script>
+
+
+}
