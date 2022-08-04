@@ -1,0 +1,104 @@
+@model DevControlM.Models.Dtos.SalaDto
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Crear">Create New</a>
+</p>
+<button id="export">Export Now</button>
+
+
+<form >
+
+    <div class="form-group">
+                <label asp-for="Nombre" class="control-label"></label>
+                @Html.DropDownListFor(x => x.Nombre , (IEnumerable
+               <SelectListItem>)ViewData["DbSalas"], "-- Select --",  htmlAttributes: new { @class = "form-control",id="prov", onchange = "myFunc()" })
+                <span asp-validation-for="Nombre" class="text-danger"></span>
+            </div> 
+
+
+</form>
+
+
+
+<div id="qr-reader" style="width:500px"></div>
+<div id="qr-reader-results"></div>
+<div id="scanned-result"></div>
+
+
+
+@section scripts
+
+{
+        @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+
+<script src="https://unpkg.com/html5-qrcode"></script>
+
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+var resu =''; 
+var resultContainer = document.getElementById('qr-reader-results');
+var lastResult, countResults = 0;
+
+function onScanSuccess(decodedText, decodedResult) {
+    if (decodedText !== lastResult) {
+        ++countResults;
+        lastResult = decodedText;
+        resu=decodedText
+        // Handle on success condition with the decoded message.
+        console.log(`Scan result ${decodedText}`, decodedResult);
+        printScanResultPretty(countResults, decodedText, decodedResult);
+
+    
+    }
+}
+
+var html5QrcodeScanner = new Html5QrcodeScanner(
+    "qr-reader", { fps: 10, qrbox: 250 });
+html5QrcodeScanner.render(onScanSuccess);
+
+function printScanResultPretty(codeId, decodedText, decodedResult) {
+	let resultSection = document.getElementById('scanned-result');
+    let tableBodyId = "scanned-result-table-body";
+    if (!document.getElementById(tableBodyId)) {
+        let table = document.createElement("table");
+        table.className = "styled-table";
+        table.style.width = "100%";
+        resultSection.appendChild(table);
+        let theader = document.createElement('thead');
+        let trow = document.createElement('tr');
+        let th1 = document.createElement('td');
+        th1.innerText = "Count";
+        let th2 = document.createElement('td');
+        th2.innerText = "Format";
+        let th3 = document.createElement('td');
+        th3.innerText = "Result";
+        trow.appendChild(th1);
+        trow.appendChild(th2);
+        trow.appendChild(th3);
+        theader.appendChild(trow);
+        table.appendChild(theader);
+        let tbody = document.createElement("tbody");
+        tbody.id = tableBodyId;
+        table.appendChild(tbody);
+    }
+    let tbody = document.getElementById(tableBodyId);
+    let trow = document.createElement('tr');
+    let td1 = document.createElement('td');
+    td1.innerText = `${codeId}`;
+    let td2 = document.createElement('td');
+    td2.innerText = `${decodedResult.result.format.formatName}`;
+    let td3 = document.createElement('td');
+    td3.innerText = `${decodedText}`;
+    trow.appendChild(td1);
+    trow.appendChild(td2);
+    trow.appendChild(td3);
+    tbody.appendChild(trow);
+}
+</script>
+}

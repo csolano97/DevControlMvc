@@ -72,6 +72,27 @@ namespace DevControlM.Data
             return data.ToList();
         }
 
+        public void CrearSala(SalaDto sala)
+        {
+            DevControlContext context = _context;
+            TbSala nuevo = new ()
+            {
+                Nombre=sala.Nombre,
+                Descripcion = sala.Descripcion,
+                Lugar=sala.Descripcion,
+                FInicio=sala.FInicio,
+                F_Fin=sala.F_Fin
+
+            };
+            _context.TbSala.Add(nuevo);
+            _context.SaveChanges();
+        }
+
+          public IEnumerable<TbSala> GetSalas()
+          {
+            var data  = _context.TbSala.ToList();
+            return data;
+          }
 
     }
 }

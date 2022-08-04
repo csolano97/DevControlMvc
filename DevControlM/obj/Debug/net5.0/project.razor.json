@@ -15659,6 +15659,11 @@
       "FileKind": "mvc"
     },
     {
+      "FilePath": "d:\\Recursos Tic\\DevControlMvc\\DevControlM\\Views\\Sala\\Crear.cshtml",
+      "TargetPath": "Views\\Sala\\Crear.cshtml",
+      "FileKind": "mvc"
+    },
+    {
       "FilePath": "d:\\Recursos Tic\\DevControlMvc\\DevControlM\\Views\\Establecimientos\\Index.cshtml",
       "TargetPath": "Views\\Establecimientos\\Index.cshtml",
       "FileKind": "mvc"
@@ -15681,6 +15686,11 @@
     {
       "FilePath": "d:\\Recursos Tic\\DevControlMvc\\DevControlM\\Views\\Establecimientos\\Create.cshtml",
       "TargetPath": "Views\\Establecimientos\\Create.cshtml",
+      "FileKind": "mvc"
+    },
+    {
+      "FilePath": "d:\\Recursos Tic\\DevControlMvc\\DevControlM\\Views\\Registro\\index.cshtml",
+      "TargetPath": "Views\\Registro\\index.cshtml",
       "FileKind": "mvc"
     },
     {

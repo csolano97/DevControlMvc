@@ -618,4 +618,7 @@ D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\DevControlM.pdb
 D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\DevControlM.genruntimeconfig.cache
 D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\Razor\Views\Participantes\Index.cshtml.g.cs
 D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\Razor\Views\Participantes\Crear.cshtml.g.cs
-D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\refint\DevControlM.dll
+D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\Razor\Views\Sala\Crear.cshtml.g.cs
+D:\Recursos Tic\DevControlMvc\DevControlM\obj\Debug\net5.0\Razor\Views\Registro\index.cshtml.g.cs
+D:\Recursos Tic\DevControlMvc\DevControlM\bin\Debug\net5.0\libman.json
+D:\Recursos Tic\DevControlMvc\DevControlM\bin\Debug\net5.0\ref\DevControlM.dll

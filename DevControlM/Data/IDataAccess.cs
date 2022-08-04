@@ -12,7 +12,10 @@ namespace DevControlM.Data
         List<T> LoadData<T, U>(string sql, U parameters, string connectionString);
         void SaveData<T>(string sql, T parameters, string connectionString);
         void CrearParticipantes(ParticipantesDto dto);
+        void CrearSala(SalaDto sala);
         IEnumerable<TbParticipantes> GetTbParticipantes();
+        IEnumerable<TbSala> GetSalas();
+        
 
     }
 
