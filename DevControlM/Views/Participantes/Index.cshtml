@@ -1,0 +1,116 @@
+﻿@model IEnumerable<DevControlM.Models.Registro.TbParticipantes>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Crear">Create New</a>
+</p>
+<button id="export">Export Now</button>
+
+<table class="table" id="tableData">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Nombre)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Apellido)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Sexo)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Telefono)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
+            <th>QR</th>
+            <th>Opciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            var qr = "https://api.qrserver.com/v1/create-qr-code/?data=" + item.Email + "&amp;size=20x20";
+            var ps = @item.Email;
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Nombre)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Apellido)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Sexo)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Telefono)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+                <td>
+
+                    <img id='barcode' src=@qr alt="" title=@ps width="20" height="20" />
+                    @* @Html.DisplayFor(modelItem => item.QR) *@
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.Id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.Id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section scripts
+
+{
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+<script type="text/javascript">
+    function generateBarCode() {
+        var nric = $('#text').val();
+        var url = 'https://api.qrserver.com/v1/create-qr-code/?data=' + nric + '&amp;size=50x50';
+        $('#barcode').attr('src', url);
+    }
+
+
+
+
+    document.getElementById('export').onclick=function(){
+        var tableId= document.getElementById('tableData').id;
+        htmlTableToExcel(tableId, filename = '');
+    }
+
+
+    var htmlTableToExcel = function (tableId, fileName = '') {
+
+        var excelFileName = 'excel_table_data';
+        var TableDataType = 'application/vnd.ms-excel';
+        var selectTable = document.getElementById(tableId);
+        var htmlTable = selectTable.outerHTML.replace(/ /g, '%20');
+
+        filename = filename ? filename + '.xls' : excelFileName + '.xls';
+        var excelFileURL = document.createElement("a");
+        document.body.appendChild(excelFileURL);
+
+        if (navigator.msSaveOrOpenBlob) {
+            var blob = new Blob(['\ufeff', htmlTable], {
+                type: TableDataType
+            });
+            navigator.msSaveOrOpenBlob(blob, fileName);
+        } else {
+
+            excelFileURL.href = 'data:' + TableDataType + ', ' + htmlTable;
+            excelFileURL.download = fileName;
+            excelFileURL.click();
+        }
+    }
+</script>
+}

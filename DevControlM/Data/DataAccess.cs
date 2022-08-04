@@ -1,4 +1,6 @@
 ﻿using Dapper;
+using DevControlM.Models.Dtos;
+using DevControlM.Models.Registro;
 using Microsoft.Data.SqlClient;
 using MySql.Data.MySqlClient;
 using System;
@@ -9,26 +11,25 @@ using System.Threading.Tasks;
 
 namespace DevControlM.Data
 {
-    public class DataAccess: IDataAccess
+    public class DataAccess : IDataAccess
     {
+        private readonly DevControlContext _context;
+
+        public DataAccess (DevControlContext context)
+        {
+           _context = context;
+        }
         public List<T> LoadData<T, U>(string sql, U parameters, string connectionString)
         {
             using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 List<T> rows = connection.Query<T>(sql, parameters).ToList();
-                return  rows;
+                return rows;
             }
 
         }
-        public string LoadData2(string sql, string connectionString)
-        {
-            using (IDbConnection connection = new MySqlConnection(connectionString))
-            {
-                var rows = connection.Query(sql, connection).ToList();
-                return rows.ToString();
-            }
 
-        }
+
         public void SaveData<T>(string sql, T parameters, string connectionString)
         {
             using (IDbConnection connection = new MySqlConnection(connectionString))
@@ -38,5 +39,39 @@ namespace DevControlM.Data
             }
 
         }
+
+        public void CrearParticipantes(ParticipantesDto dto)
+        {
+
+            DevControlContext context = _context;
+            var tp = "";
+       
+            TbParticipantes nuevo = new()
+            {
+                Nombre = dto.Nombre,
+                Apellido = dto.Apellido,
+                Sexo = dto.Sexo,
+
+                Telefono = dto.Telefono,
+                Email = dto.Email,
+                QR = Guid.NewGuid()
+
+            };
+            _context.TbParticipantes.Add(nuevo);
+
+            _context.SaveChanges();
+        }
+        public IEnumerable<TbParticipantes> GetTbParticipantes()
+        {
+
+            var data = _context.TbParticipantes.OrderBy(x=>x.Id);
+            // ParticipantesDto nuevo = new ()
+            // {
+
+            // };
+            return data.ToList();
+        }
+
+
     }
 }

@@ -26,8 +26,8 @@ namespace DevControlM
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<DataAccess>();
-            services.AddSingleton<IDataAccess, DataAccess>();
+            services.AddScoped<DataAccess>();
+            services.AddScoped<IDataAccess, DataAccess>();
             services.AddDbContext<DevControlContext>(options =>
                     options.UseSqlServer(Configuration.GetConnectionString("DevControlContext")));
         }
