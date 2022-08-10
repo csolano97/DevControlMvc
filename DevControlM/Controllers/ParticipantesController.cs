@@ -1,6 +1,8 @@
 ﻿using DevControlM.Data;
+using DevControlM.Models.Registro;
 using DevControlM.Models.Dtos;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,6 +25,15 @@ namespace DevControlM.Controllers
         }
         public IActionResult Crear ()
         {
+            List<Sexo> Sex = new List<Sexo>();
+            Sex.Add(new Sexo(1, "Masculino"));
+            Sex.Add(new Sexo(2, "Femenino"));
+
+
+
+            var sex_list = new SelectList(Sex, "Id","sexo");
+        ViewData["DBsexo"] = sex_list;
+
             return View();
         }
         

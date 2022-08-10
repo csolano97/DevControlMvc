@@ -19,7 +19,7 @@ namespace DevControlM.Controllers
 
         public   IActionResult Index()
         {
-            return View(  _data.GetTbParticipantes());
+            return View(  _data.GetSalas());
         }
         public IActionResult Crear ()
         {
