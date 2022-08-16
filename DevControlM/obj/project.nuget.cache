@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "E5J6Urz8D5UL0CPjGaVzDNnTofWFbVDnRsjGQjsCij7CWlIKgXmWfOkokbgm59G9ZSVj41p/g2pd7aU0/X9bDg==",
+  "dgSpecHash": "8F8DlGFu9apCy1ZivqqTv2AvbDZ7jggyoj5X575lsAqbjYzfniAYN65De+3kSewTf+Fr4jJs9JSZB4mfk7GEPQ==",
   "success": true,
-  "projectFilePath": "D:\\Recursos Tic\\DevControlMvc\\DevControlM\\DevControlM.csproj",
+  "projectFilePath": "D:\\Recursos Tic\\EN DESARROLLO\\DevControlMvc\\DevControlM\\DevControlM.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\ddesarrollo\\.nuget\\packages\\bouncycastle.netcore\\1.8.5\\bouncycastle.netcore.1.8.5.nupkg.sha512",
     "C:\\Users\\ddesarrollo\\.nuget\\packages\\dapper\\2.0.123\\dapper.2.0.123.nupkg.sha512",
