@@ -16,7 +16,7 @@ namespace DevControlM.Apis.Registro
         [HttpGet]
         public IEnumerable<string> Get()
         {
-            return new string[] { "value1", "value2" };
+            return new string[] { "value1", "valu3e2" };
         }
 
         // GET api/<RegistroController>/5
